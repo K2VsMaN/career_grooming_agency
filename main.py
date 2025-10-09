@@ -13,4 +13,4 @@ def home_page():
     show_home_page()
     show_footer()
     
-ui.run()
+ui.run(on_air=True)
