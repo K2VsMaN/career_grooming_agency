@@ -12,10 +12,10 @@ def show_header():
 
             # Middle: Navigation
             with ui.row().classes('flex space-x-6 flex-grow justify-center'):
-                ui.link('Home', '#').classes('text-black hover:text-gray-300 text-sm no-underline')
-                ui.link('Mission', '#').classes('text-black hover:text-gray-300 text-sm no-underline')
-                ui.link('Vision', '#').classes('text-black hover:text-gray-300 text-sm no-underline')
-                ui.link('Stories', '#').classes('text-black hover:text-gray-300 text-sm no-underline')
+                ui.link('Home', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
+                ui.link('Mission', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
+                ui.link('Vision', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
+                ui.link('Stories', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
 
             # Right: Login pill button (SVG image + label inside)
             with ui.button(on_click=lambda: ui.open('/login')) \
