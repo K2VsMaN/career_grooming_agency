@@ -13,4 +13,6 @@ def home_page():
     show_home_page()
     show_footer()
     
-ui.run(on_air=True)
+ui.run()
+
+#Live link - on_air=True
