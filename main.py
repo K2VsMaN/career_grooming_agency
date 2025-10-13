@@ -13,10 +13,7 @@ def home_page():
     show_header()
     show_home_page()
     show_footer()
-
-@ui.page('/trainee/trainee_dashboard')
-def trainee_dashboard():
-    show_trainee_dashboard()     
-
     
-ui.run()
+ui.run(on_air=True)
+
+#Live link - on_air=True

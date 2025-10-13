@@ -147,7 +147,7 @@ def show_home_page():
         )
 
         mentors = [
-    {"name": "Ama Boateng", "role": "Data Scientist", "sub": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Maecenas porttitor congue massa.Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.","image": "assets/mentors/M1.jpg"}, #ML, analytics, Python
+    {"name": "Ama Boateng", "role": "Data Scientist", "sub": "ML, analytics, Python","image": "assets/mentors/M1.jpg"}, 
     {"name": "Kwesi Mensah", "role": "Product Designer", "sub": "Design systems, UX strategy","image": "assets/mentors/M2.jpg"},
     {"name": "Kwame Asare", "role": "Cloud Engineer", "sub": "Azure, DevOps, IaC", "image": "assets/mentors/M3.jpg"},
 ]
@@ -171,3 +171,6 @@ def show_home_page():
                     ui.label(m['name']).classes('text-xl font-semibold text-[#131315]')
                     ui.label(m['role']).classes('text-sm text-gray-600 mt-1')
                     ui.label(m['sub']).classes('text-sm text-gray-500 mt-2')
+
+# Dummy Text
+# Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Maecenas porttitor congue massa.Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
