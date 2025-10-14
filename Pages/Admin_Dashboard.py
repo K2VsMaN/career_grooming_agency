@@ -1,10 +1,7 @@
 from nicegui import ui
-from components.sidebar import show_sidebar
 
+@ui.page("/admin_dashboard")
 def show_admin_dashboard():
-    with ui.column().classes("w-[20%] h-full fixed"):
-        show_sidebar()
-
     # Main content (pushed right to clear the fixed sidebar)
     with ui.element('div').classes(
         # adjust these paddings to match your sidebar width and outer margins
