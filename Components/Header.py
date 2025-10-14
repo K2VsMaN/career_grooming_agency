@@ -16,7 +16,7 @@ def show_header():
                 ui.link('Home', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
                 ui.link('Mission', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
                 ui.link('Vision', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
-                ui.link('Stories', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
+                ui.link('Mentors', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
 
             # Right: Login pill button
             with ui.button(on_click=lambda: ui.open('/login')) \
