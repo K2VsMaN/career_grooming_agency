@@ -19,7 +19,7 @@ def show_header():
                 ui.link('Mentors', '#').classes('text-black hover:text-gray-300 text-xl no-underline')
 
             # Right: Login pill button
-            with ui.button(on_click=lambda: ui.open('/login')) \
+            with ui.button(on_click=lambda: ui.navigate.to('/login')) \
     .props('rounded no-caps unelevated') \
     .classes('!bg-black !text-white h-12 px-5 shadow-lg hover:!bg-gray-800 transition-colors flex items-center'):
     

@@ -6,6 +6,8 @@ from components.footer import show_footer
 
 @ui.page("/")
 def show_home_page():
+    show_header()
+    
     # Main content container
     ui.query(".nicegui-content").classes("m-0 p-0")
     
@@ -36,29 +38,22 @@ def show_home_page():
     'pl-4 sm:pl-6 md:pl-16 -mt-20'
 ) as hero_buttons:
 
-                (ui.button('Start Your Journey')
-       .classes(
+                ui.button('Start Your Journey').classes(
            'text-lg px-8 py-6 rounded-full border-2 border-white text-white '
            'transition-colors duration-200 ease-out '
            'hover:bg-yellow-400 hover:border-yellow-400 hover:text-black '
            'active:bg-yellow-400 active:border-yellow-400 active:text-black '
            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 '
            '-mt-[30px]' 
-       )
-       .props('flat dense no-caps push ripple')
-    )
+       ).props('flat dense no-caps push ripple')
 
-                (ui.button('Learn More')
-       .classes(
+                ui.button('Learn More').classes(
            'text-lg px-8 py-6 rounded-full border-2 border-white text-white '
            'transition-colors duration-200 ease-out '
            'hover:bg-yellow-400 hover:border-yellow-400 hover:text-black '
            'active:bg-yellow-400 active:border-yellow-400 active:text-black '
            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 '
-           '-mt-[30px]'
-       )
-       .props('flat dense no-caps push ripple')
-    )
+           '-mt-[30px]').props('flat dense no-caps push ripple')
     
     # Mission & Vision
 
@@ -171,6 +166,8 @@ def show_home_page():
                     ui.label(m['name']).classes('text-xl font-semibold text-[#131315]')
                     ui.label(m['role']).classes('text-sm text-gray-600 mt-1')
                     ui.label(m['sub']).classes('text-sm text-gray-500 mt-2')
+
+    show_footer()
 
 # Dummy Text
 # Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Maecenas porttitor congue massa.Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna. 
