@@ -1,5 +1,4 @@
 from nicegui import ui
-
 @ui.page("/admin_dashboard")
 def show_admin_dashboard():
     # Main content (pushed right to clear the fixed sidebar)
