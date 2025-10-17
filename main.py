@@ -19,4 +19,4 @@ from pages.agent_dashboard import *
 
 app.add_static_files('/assets', 'assets')
 
-ui.run()  # remove on_air=True if you don’t need the live link
+ui.run(storage_secret="asdfghjlzxcvbnm")  # remove on_air=True if you don’t need the live link
