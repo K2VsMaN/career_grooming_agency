@@ -1,7 +1,7 @@
 from nicegui import ui
 from components.sidebar import show_sidebar
 
-@ui.page('/trainee/dashboard')
+@ui.page('pages/trainee/dashboard')
 def dashboard_layout():
     ui.query(".nicegui-content").classes("m-0 p-0 gap-0")
     with ui.row().classes("w-full h-full  flex-nowrap"):
