@@ -3,6 +3,7 @@ from components.header import *
 from components.footer import *
 from pages.home_page import show_home_page
 from pages.admin_dashboard import *
+from pages.agent_dashboard import *
 
 
 

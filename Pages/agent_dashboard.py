@@ -1,11 +1,15 @@
-from nicegui import ui
+from nicegui import app, ui
 
-def show_agent_dashboard():
+
+
+@ui.page("/pages/agent_dashboard")
+def show_agent_dashbaord():
+    
     # ---------- sample data ----------
     trainees = [
-        {'id': 'T1', 'name': 'John Doe',     'track': 'Software Development • CGA2025ABC', 'course': 'Web Development Basics', 'last_active': '2024-03-15', 'next_session': '2024-03-20', 'badges': ['active', 'excellent'], 'avatar': '/assets/mentors/M1.jpg'},
-        {'id': 'T2', 'name': 'Ama Mensah',   'track': 'Data Science • CGA2025DEF',         'course': 'Database Fundamentals',   'last_active': '2024-03-14', 'next_session': '2024-03-22', 'badges': ['active', 'good'],      'avatar': '/assets/mentors/M2.jpg'},
-        {'id': 'T3', 'name': 'Kwame Asante', 'track': 'Cybersecurity • CGA2025GHI',        'course': 'Network Security',        'last_active': '2024-03-16', 'next_session': '2024-03-23', 'badges': ['active', 'excellent'], 'avatar': '/assets/mentors/M3.jpg'},
+        {'id': 'T1', 'name': 'John Doe',     'track': 'Software Development • CGA2025ABC', 'course': 'Web Development Basics', 'last_active': '2024-03-15', 'next_session': '2024-03-20', 'avatar': '/assets/mentors/M1.jpg'},
+        {'id': 'T2', 'name': 'Ama Mensah',   'track': 'Data Science • CGA2025DEF',         'course': 'Database Fundamentals',   'last_active': '2024-03-14', 'next_session': '2024-03-22',      'avatar': '/assets/mentors/M2.jpg'},
+        {'id': 'T3', 'name': 'Kwame Asante', 'track': 'Cybersecurity • CGA2025GHI',        'course': 'Network Security',        'last_active': '2024-03-16', 'next_session': '2024-03-23', 'avatar': '/assets/mentors/M3.jpg'},
     ]
 
     # ---------- state ----------
@@ -33,9 +37,9 @@ def show_agent_dashboard():
             'track': new_track.value,
             'course': new_course.value or '—',
             'last_active': new_last.value or '—',
-            'next_session': new_next.value or '—',
+            # 'next_session': new_next.value or '—',
             'badges': ['pending'],
-            'avatar': new_avatar.value or '/assets/mentors/M4.jpg',
+            'avatar': new_avatar.value,
         })
         dlg_assign.close()
         render_list.refresh()
@@ -43,14 +47,14 @@ def show_agent_dashboard():
 
     # ---------- dialogs ----------
     with ui.dialog() as dlg_assign, ui.card().classes('w-[560px] max-w-full'):
-        ui.label('Assign New Trainee').classes('text-lg font-semibold')
+        ui.label('Assign task').classes('text-lg font-semibold')
         with ui.element('div').classes('grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 w-full'):
             new_name  = ui.input('Full Name *').props('outlined dense')
             new_track = ui.input('Track / Cohort *').props('outlined dense')
             new_course = ui.input('Current Course').props('outlined dense')
-            new_avatar = ui.input('Avatar URL (/assets/...)').props('outlined dense')
+            new_avatar = ui.input('Avatar URL (/assets/mentors/M3.jpg)').props('outlined dense')
             new_last = ui.input('Last Active (YYYY-MM-DD)').props('outlined dense')
-            new_next = ui.input('Next Session (YYYY-MM-DD)').props('outlined dense')
+            # new_next = ui.input('Next Session (YYYY-MM-DD)').props('outlined dense')
         with ui.row().classes('justify-end gap-2 w-full mt-2'):
             ui.button('Cancel').classes('rounded-lg').on('click', dlg_assign.close)
             ui.button('Add Trainee').classes('bg-black text-white hover:bg-neutral-900 rounded-lg').props('no-caps').on('click', add_trainee)
@@ -91,15 +95,8 @@ def show_agent_dashboard():
                             ui.label(t['name']).classes('text-slate-900 font-medium')
                             with ui.row().classes('gap-2'):
                                 ui.label(t['track']).classes('text-xs text-gray-500')
-                        with ui.row().classes('ml-auto gap-2'):
-                            for b in t['badges']:
-                                cls = {
-                                    'active':   'bg-emerald-100 text-emerald-700',
-                                    'excellent':'bg-emerald-100 text-emerald-700',
-                                    'good':     'bg-indigo-100 text-indigo-700',
-                                    'pending':  'bg-yellow-100 text-yellow-700',
-                                }.get(b, 'bg-gray-100 text-gray-700')
-                                ui.label(b).classes(f'px-2 py-1 rounded-full text-xs {cls}')
+                        
+                        
 
                     # Course
                     ui.label(t['course']).classes('col-span-3 text-slate-800')
@@ -122,7 +119,7 @@ def show_agent_dashboard():
         # Stats (optional summary)
         stats = [
             {'title': 'Total Trainees', 'value': '12', 'icon': 'groups'},
-            {'title': 'Avg Progress',   'value': '—',  'icon': 'trending_up'},  # left blank (no bars requested)
+            {'title': 'Avg Progress',   'value': '—',  'icon': 'trending_up'}, 
             {'title': 'Sessions This Week', 'value': '8', 'icon': 'event'},
             {'title': 'Materials Shared',   'value': '24', 'icon': 'content_copy'},
         ]
@@ -145,10 +142,10 @@ def show_agent_dashboard():
                 with ui.row().classes('gap-2'):
                     search = ui.input(placeholder='Search trainees...').props('outlined dense').classes('w-[240px]')
                     search.on('input', lambda e: (state.__setitem__('q', e.value or ''), render_list.refresh()))
-                    ui.button('Assign New Trainee', icon='add').classes(
+                    ui.button('Assign New Task', icon='add').classes(
                         'bg-black text-white hover:bg-neutral-900 rounded-lg'
                     ).props('no-caps').on('click', dlg_assign.open)
-                    ui.button('Remove Selected', icon='person_remove').classes(
+                    ui.button('Remove task', icon='person_remove').classes(
                         'bg-black text-white hover:bg-neutral-900 rounded-lg'
                     ).props('no-caps').on('click', lambda: remove_selected())
 
