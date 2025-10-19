@@ -1,4 +1,6 @@
-from nicegui import ui
+from nicegui import app, ui
+
+
 
 @ui.page("/pages/agent_dashboard")
 def show_agent_dashbaord():
