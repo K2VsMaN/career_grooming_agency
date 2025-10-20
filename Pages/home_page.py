@@ -7,6 +7,15 @@ from components.footer import show_footer
 @ui.page("/")
 def show_home_page():
     show_header()
+
+    def show_role_selection_dialog():
+        """Creates and opens a dialog for role selection."""
+        with ui.dialog() as dialog, ui.card().classes('p-8 rounded-lg'):
+            ui.label('How would you like to join us?').classes('text-2xl font-bold text-center w-full mb-6 text-gray-800')
+            with ui.row().classes('w-full justify-center items-center gap-6'):
+                ui.button('As a Trainee', on_click=lambda: ui.navigate.to('/trainee/forms')).props('color=primary size=lg').classes('px-8 py-4')
+                ui.button('As an Agent', on_click=lambda: ui.navigate.to('/agent/forms')).props('color=secondary size=lg').classes('px-8 py-4')
+        dialog.open()
     
     # Main content container
     ui.query(".nicegui-content").classes("m-0 p-0")
@@ -34,11 +43,11 @@ def show_home_page():
                         ui.label('to senior high school graduates passionate about technology.').classes('mt-0')
                 
             with ui.row().classes(
-    'w-full flex-col sm:flex-row gap-4 justify-start items-start '
-    'pl-4 sm:pl-6 md:pl-16 -mt-20'
+    'relative z-10 w-full flex-col sm:flex-row gap-4 justify-start items-start '
+    'pl-4 sm:pl-6 md:pl-16 -mt-20' # Added relative and z-10
 ) as hero_buttons:
 
-                ui.button('Start Your Journey').classes(
+                ui.button('Start Your Journey', on_click=show_role_selection_dialog).classes(
            'text-lg px-8 py-6 rounded-full border-2 border-white text-white '
            'transition-colors duration-200 ease-out '
            'hover:bg-yellow-400 hover:border-yellow-400 hover:text-black '
