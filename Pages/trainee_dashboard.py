@@ -1,8 +1,69 @@
-from nicegui import ui
+from nicegui import ui,run,events
+import io
 from components.sidebar import show_sidebar
+import requests
+from utils.api import base_url
+
+_upload_btn: ui.upload = None
+
+def _run_upload_transcript(files):
+    return requests.post(f"{base_url}/dashboard/trainee/transcript", files=files)
+
+async def _upload(files):
+    _upload_btn.props(add="disable loading")
+    response = await run.cpu_bound(_run_upload_transcript, files)
+    print(response.status_code, response.content)
+    _upload_btn.props(remove="disable loading")
+    if response.status_code == 200:
+        return ui.navigate.to("/trainee/dashboard")
+    # elif response.status_code == 409:
+    #     return ui.notify(message="Not Successful!", type="warning")
+
+# def _run_create_event(data, files, token):
+#     """Send form data and files to backend."""
+#     return requests.post(
+#         f"{base_url}/dashboard/trainee/progress",
+#         data=data,
+#         headers={"Authorization": f"Bearer {token}"},
+#     )
+
+
+
 
 @ui.page('/trainee/dashboard')
-def dashboard_layout():
+def dashboard_layout(field_name: str = "transcript"):
+    global _upload_btn
+
+    uploaded_files = {}  # Dictionary to store all uploaded files
+
+    def handle_document_upload(field_name: str):
+        """Create upload handler for each field."""
+        def inner(e: events.UploadEventArguments):
+            # Handle both in-memory and temp-file uploads
+            if hasattr(e.file, "_path") and e.file._path:
+                with open(e.file._path, "rb") as f:
+                    file_bytes = f.read()
+            elif hasattr(e.file, "_data"):
+                file_bytes = e.file._data
+            else:
+                ui.notify(f"Could not read file {e.file.name}", type="warning")
+                return
+
+            # Store file in memory for backend upload
+            uploaded_files[field_name] = (
+                e.file.name,
+                io.BytesIO(file_bytes),
+                e.file.content_type,
+            )
+
+            size_kb = len(file_bytes) / 1024
+            print(
+                f"{field_name} uploaded: {e.file.name} "
+                f"({size_kb:.2f} KB, {e.file.content_type})"
+            )
+            ui.notify(f"{e.file.name} uploaded successfully!", type="positive")
+
+        return inner 
     ui.query(".nicegui-content").classes("m-0 p-0 gap-0")
     with ui.row().classes("w-full h-full  flex-nowrap"):
         with ui.column().classes("w-[20%] h-full fixed"):
@@ -25,7 +86,7 @@ def dashboard_layout():
             # Left Column (Progress and Agent)
             with ui.column().classes('lg:col-span-2 gap-8'):
                 with ui.card().classes('w-full p-6 rounded-xl shadow-md'):
-                    ui.label('Overall Progress').classes('text-xl font-bold text-gray-800 mb-4')
+                    progress = ui.label('Overall Progress').classes('text-xl font-bold text-gray-800 mb-4')
                     with ui.row().classes('w-full items-center justify-between mb-1'):
                         ui.label('Tasks Completed').classes('text-gray-500')
                         ui.label('60%').classes('font-semibold text-indigo-600')
@@ -47,9 +108,9 @@ def dashboard_layout():
                     ui.icon('auto_awesome', size='2.5rem').classes('text-indigo-500 animate-pulse')
                     ui.label('AI Course Assistant').classes('text-xl font-bold text-gray-800 mt-2')
                     ui.label('Get personalized course recommendations.').classes('text-gray-500 text-sm mb-4')
-                    ui.button('Find a Course').classes('w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600')
+                    ui.button('Find a Course').classes('w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600')       
 
                 with ui.card().classes('w-full p-6 rounded-xl shadow-md'):
                     ui.label('Upload Transcript').classes('text-xl font-bold text-gray-800 mb-4')
-                    ui.upload(auto_upload=True).props('flat bordered').classes('w-full')
+                    _upload_btn = ui.upload(on_upload=handle_document_upload(field_name), auto_upload=True).props('flat bordered').classes('w-full')
                     ui.label('PDF, DOCX, PNG, JPG up to 10MB').classes('text-xs text-gray-400 mt-1 text-center w-full')
