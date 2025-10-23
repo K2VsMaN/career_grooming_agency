@@ -1,35 +1,52 @@
-from nicegui import ui
+from nicegui import ui, app
+
+def _sign_out():
+    """Clear user session and navigate to the home page."""
+    app.storage.user.clear()
+    ui.navigate.to("/")
 
 def show_sidebar():
     ui.query(".nicegui-content").classes("m-0 p-0 gap-0")
-    # The main sidebar container. `justify-between` pushes content to the top and bottom. `items-start` aligns content to the left.
-    with ui.column().classes('bg-gray-100 p-4 w-[20%] shadow-lg h-full justify-between items-start fixed'):
-        # Top section: Header and navigation links
-        with ui.column().classes('w-full items-start gap-2'):
+    # The main sidebar container.
+    with ui.column().classes('bg-gray-100 p-4 w-[20%] shadow-lg h-full justify-between items-center fixed'):
+        # Top section: Header and branding
+        with ui.column().classes('w-full items-center mb-4'):
             # Header
-            with ui.column().classes('items-center mb-4'):
-                ui.icon('school').classes('text-primary text-3xl')
-                ui.label('Trainee').classes('text-2xl font-bold text-gray-800')
+            ui.icon('school').classes('text-primary text-3xl')
+            ui.label('Trainee').classes('text-2xl font-bold text-gray-800')
 
-            # Navigation buttons
-            ui.button('Dashboard', icon='dashboard') \
-                .classes('w-full justify-start py-2.5 px-4 rounded transition duration-200 bg-primary text-white') \
-                .props('flat no-caps')
-            ui.button('Resources', icon='source') \
-                .classes('w-full justify-start py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200') \
-                .props('flat no-caps')
-            ui.button("Agent's Contact", icon='contact_phone') \
-                .classes('w-full justify-start py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200') \
-                .props('flat no-caps')
-            ui.button('Upload Transcript', icon='upload_file') \
-                .classes('w-full justify-start py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200') \
-                .props('flat no-caps')
-            ui.button('IT Course Selection', icon='model_training') \
-                .classes('w-full justify-start py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200') \
-                .props('flat no-caps')
+        ui.separator().classes('w-full h-px bg-gray-300 mb-4')
 
-        # Bottom section: Logout button
-        with ui.column().classes('w-full'):
-            ui.button('Logout', icon='logout') \
-                .classes('w-full justify-start py-2.5 px-4 rounded transition duration-200 hover:bg-gray-200 text-red-500') \
-                .props('flat no-caps')
+        # Navigation links section
+        with ui.column().classes('w-full space-y-2 flex-grow'):
+            # Dashboard (Active)
+            with ui.row().classes('w-full items-center cursor-pointer bg-primary p-2 rounded-lg'):
+                ui.icon('dashboard').classes('text-white')
+                ui.link('Dashboard', '/trainee/dashboard').classes('text-white font-semibold no-underline text-base')
+
+            # Resources
+            with ui.row().classes('w-full items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg'):
+                ui.icon('source').classes('text-gray-600')
+                ui.link('Resources', '#').classes('text-gray-700 font-semibold no-underline text-base')
+
+            # Agent's Contact
+            with ui.row().classes('w-full items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg'):
+                ui.icon('contact_phone').classes('text-gray-600')
+                ui.link("Agent's Contact", '#').classes('text-gray-700 font-semibold no-underline text-base')
+
+            # Upload Transcript
+            with ui.row().classes('w-full items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg'):
+                ui.icon('upload_file').classes('text-gray-600')
+                ui.link('Upload Transcript', '#').classes('text-gray-700 font-semibold no-underline text-base')
+
+            # IT Course Selection
+            with ui.row().classes('w-full items-center cursor-pointer hover:bg-gray-200 p-2 rounded-lg'):
+                ui.icon('model_training').classes('text-gray-600')
+                ui.link('IT Course Selection', '#').classes('text-gray-700 font-semibold no-underline text-base')
+
+        # Logout button at the bottom
+        with ui.column().classes('w-full items-center mt-auto'):
+            ui.separator().classes('w-full h-px bg-gray-300 mb-4')
+            with ui.row().classes('w-full items-center cursor-pointer p-2 rounded-lg hover:bg-red-100 transition-colors'):
+                ui.icon('logout').classes('text-red-600')
+                ui.button(text='Logout', on_click=_sign_out).props('flat no-caps').classes('bg-transparent text-red-600 font-semibold shadow-none text-base')

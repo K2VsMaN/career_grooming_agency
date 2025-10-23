@@ -17,10 +17,14 @@ async def _login(data):
     if response.status_code == 200:
         json_data = response.json()
         app.storage.user["access_token"] = json_data["access_token"]
+        app.storage.user["username"] = json_data.get("username", "User")  # Store username
         if json_data["role"] == "trainee":
             return ui.navigate.to("/trainee/dashboard")
         elif json_data["role"] == "agent":
             return ui.navigate.to("/pages/agent_dashboard")
+        elif json_data["role"] == "admin":
+            return ui.navigate.to("/pages/admin_dashboard")
+
     if response.status_code == 404:
         return ui.navigate.to("/agent/signup")
     # elif response.status_code == 401:

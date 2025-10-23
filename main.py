@@ -9,6 +9,7 @@ from pages.trainee_forms import *
 from pages.trainee_signup import *
 from pages.login import *
 from pages.agent_signup import *
+from pages.admin_signup import *
 
 
 

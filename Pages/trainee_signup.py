@@ -49,22 +49,32 @@ def show_trainee_signup():
                 "text-3xl font-bold text-center mb-4 text-gray-800"
             )
 
-            # ui.label('Sign up as:').classes('text-sm font-medium text-center mb-2')
-            with ui.row().classes("w-full grid grid-cols-2 gap-4 mb-4"):
+            # Role selection: Agent, Trainee, Admin
+            with ui.row().classes("w-full grid grid-cols-3 gap-2 mb-4"):
+                # Agent (inactive)
                 with ui.column().on(
                     "click", lambda: ui.navigate.to("/agent/signup")
                 ).classes(
-                    "group items-center justify-center p-4 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
+                    "group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
                 ):
-                    ui.icon("support_agent").classes(
-                        "text-4xl mb-2 text-gray-400 group-hover:text-indigo-500"
-                    )
+                    ui.icon("support_agent").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
                     ui.label("Agent").classes("text-sm font-medium")
+
+                # Trainee (active)
                 with ui.column().classes(
-                    "items-center justify-center p-4 border-2 rounded-lg cursor-pointer bg-indigo-500 text-white border-indigo-500 transition-all"
+                    "items-center justify-center p-3 border-2 rounded-lg cursor-pointer bg-indigo-500 text-white border-indigo-500 transition-all"
                 ):
-                    ui.icon("school").classes("text-4xl mb-2")
+                    ui.icon("school").classes("text-3xl mb-1")
                     ui.label("Trainee").classes("text-sm font-medium")
+
+                # Admin (inactive)
+                with ui.column().on(
+                    "click", lambda: ui.navigate.to("/admin/signup")
+                ).classes(
+                    "group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
+                ):
+                    ui.icon("admin_panel_settings").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
+                    ui.label("Admin").classes("text-sm font-medium")
 
             username = _create_input("Username", "person_outline")
             email = _create_input("Email", "mail_outline")

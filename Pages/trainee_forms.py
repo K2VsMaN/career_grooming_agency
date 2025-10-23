@@ -32,9 +32,10 @@ async def _create_event(data, files):
     if response.status_code == 200:
         ui.notify("Application submitted successfully!", type="positive")
         return ui.navigate.to("/")
-    else:
-        ui.notify(f"Submission failed: {response.status_code}", type="negative")
-
+    elif response.status_code == 400:
+        ui.notify(f"User already exists!:", type="negative")
+        return ui.navigate.to("/")
+    
 
 @ui.page("/trainee/forms")
 def show_trainee_forms():
@@ -71,14 +72,15 @@ def show_trainee_forms():
         return inner
 
     def _create_upload(label: str, field_name: str):
-        """Create a labeled upload input."""
+        """Create a labeled upload input that accepts only images."""
         with ui.column().classes("w-full gap-1"):
             ui.label(label).classes("text-sm font-medium text-gray-700")
             ui.upload(
                 on_upload=handle_document_upload(field_name),
                 auto_upload=True,
                 max_files=1,
-            ).props("flat bordered").classes("w-full")
+            ).props("flat bordered accept=image/*").classes("w-full")
+            ui.label("Please upload an image file (e.g., PNG, JPG).").classes("text-xs text-gray-500 -mt-1")
 
     # -------------------------------
     # UI LAYOUT

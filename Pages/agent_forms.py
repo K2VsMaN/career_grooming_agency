@@ -71,14 +71,15 @@ def show_agent_forms():
         return inner
 
     def _create_upload(label: str, field_name: str):
-        """Create a labeled upload input."""
+        """Create a labeled upload input that accepts only images."""
         with ui.column().classes("w-full gap-1"):
             ui.label(label).classes("text-sm font-medium text-gray-700")
             ui.upload(
                 on_upload=handle_document_upload(field_name),
                 auto_upload=True,
                 max_files=1,
-            ).props("flat bordered").classes("w-full")
+            ).props("flat bordered accept=image/*").classes("w-full")
+            ui.label("Please upload an image file (e.g., PNG, JPG).").classes("text-xs text-gray-500 -mt-1")
 
     with ui.card().classes("w-full max-w-2xl mx-auto my-8 p-8 rounded-xl shadow-2xl"):
         ui.label("Agent Application Form").classes(
