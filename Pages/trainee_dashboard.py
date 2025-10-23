@@ -64,6 +64,8 @@ def dashboard_layout(field_name: str = "transcript"):
             ui.notify(f"{e.file.name} uploaded successfully!", type="positive")
 
         return inner 
+@ui.page('pages/trainee/dashboard')
+def dashboard_layout():
     ui.query(".nicegui-content").classes("m-0 p-0 gap-0")
     with ui.row().classes("w-full h-full  flex-nowrap"):
         with ui.column().classes("w-[20%] h-full fixed"):
