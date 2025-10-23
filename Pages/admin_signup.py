@@ -39,10 +39,10 @@ def _create_input(
     return inp
 
 
-@ui.page("/agent/signup")
-def show_agent_signup():
+@ui.page("/admin/signup")
+def show_admin_signup():
     global _signup_btn
-    """Creates an agent registration form with improved styling."""
+    """Creates an admin registration form with improved styling."""
     with ui.card().classes("w-full max-w-md mx-auto my-8 rounded-xl shadow-2xl"):
         with ui.column().classes("w-full p-8 gap-4"):
             ui.label("Create An Account").classes(
@@ -51,11 +51,13 @@ def show_agent_signup():
 
             # Role selection: Agent, Trainee, Admin
             with ui.row().classes("w-full grid grid-cols-3 gap-2 mb-4"):
-                # Agent (active)
-                with ui.column().classes(
-                    "items-center justify-center p-3 border-2 rounded-lg cursor-pointer bg-indigo-500 text-white border-indigo-500 transition-all"
+                # Agent (inactive)
+                with ui.column().on(
+                    "click", lambda: ui.navigate.to("/agent/signup")
+                ).classes(
+                    "group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
                 ):
-                    ui.icon("support_agent").classes("text-3xl mb-1")
+                    ui.icon("support_agent").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
                     ui.label("Agent").classes("text-sm font-medium")
 
                 # Trainee (inactive)
@@ -67,20 +69,17 @@ def show_agent_signup():
                     ui.icon("school").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
                     ui.label("Trainee").classes("text-sm font-medium")
 
-                # Admin (inactive)
-                with ui.column().on(
-                    "click", lambda: ui.navigate.to("/admin/signup")
-                ).classes(
-                    "group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
+                # Admin (active)
+                with ui.column().classes(
+                    "items-center justify-center p-3 border-2 rounded-lg cursor-pointer bg-indigo-500 text-white border-indigo-500 transition-all"
                 ):
-                    ui.icon("admin_panel_settings").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
+                    ui.icon("admin_panel_settings").classes("text-3xl mb-1")
                     ui.label("Admin").classes("text-sm font-medium")
 
             username = _create_input("Username", "person_outline")
             email = _create_input("Email", "mail_outline")
             password = _create_input("Password", "lock_outline", is_password=True)
             confirm_password = _create_input("Confirm Password", "lock_outline", is_password=True)
-            verification_code = _create_input("Verification Code", "verified_user")
 
             _signup_btn = ui.button(
                 text="Sign Up",
@@ -90,8 +89,7 @@ def show_agent_signup():
                         "email": email.value,
                         "password": password.value,
                         "confirm_password": confirm_password.value,
-                        "passcode": verification_code.value,
-                        "role": "agent",
+                        "role": "admin",
                     }
                 ),
             ).classes(

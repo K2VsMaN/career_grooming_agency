@@ -1,0 +1,1 @@
+base_url = "https://career-grooming-agency-api.onrender.com"
