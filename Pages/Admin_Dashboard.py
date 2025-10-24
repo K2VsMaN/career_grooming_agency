@@ -35,7 +35,7 @@ def _create_stat_cards(stats: List[Dict[str, str]]):
                 with ui.element('div').classes('flex items-start justify-between'):
                     with ui.column().classes('gap-1'):
                         ui.label(s['title']).classes('text-sm text-gray-600')
-                        ui.label(s['value']).classes('text-2xl font-bold text-slate-900')
+                        ui.label(s['value']).classes('text-2xl font-semibold text-slate-900')
                     with ui.element('div').classes('w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center'):
                         ui.icon(s['icon']).classes('text-xl')
 
