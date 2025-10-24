@@ -64,8 +64,7 @@ def dashboard_layout(field_name: str = "transcript"):
             ui.notify(f"{e.file.name} uploaded successfully!", type="positive")
 
         return inner 
-@ui.page('pages/trainee/dashboard')
-def dashboard_layout():
+    
     ui.query(".nicegui-content").classes("m-0 p-0 gap-0")
     with ui.row().classes("w-full h-full  flex-nowrap"):
         with ui.column().classes("w-[20%] h-full fixed"):
@@ -105,6 +104,12 @@ def dashboard_layout():
                             ui.label('Senior IT Advisor').classes('text-gray-500')
                         ui.button('Contact', icon='mail_outline', on_click=lambda: ui.notify('Contacting agent...')) \
                             .props('flat round color=primary').classes('ml-auto pointer-events-none') # Make button non-interactive as card is clickable
+                with ui.card().on('click', lambda: ui.notify('Navigating to resources...')).classes('w-full p-6 rounded-xl shadow-md items-center text-center cursor-pointer hover:shadow-xl transition-shadow'):
+                    ui.icon('source', size='2.5rem').classes('text-indigo-500')
+                    ui.label('Learning Resources').classes('text-xl font-bold text-gray-800 mt-2')
+                    ui.label('Access articles, videos, and tutorials.').classes('text-gray-500 text-sm mb-4')
+                    ui.button('Browse Resources', on_click=lambda: ui.navigate.to('/resources')).classes('w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 pointer-events-none')
+
 
             # Right Column (AI Assistant and Upload)
             with ui.column().classes('lg:col-span-1 gap-8'):
@@ -113,8 +118,7 @@ def dashboard_layout():
                     ui.label('AI Course Assistant').classes('text-xl font-bold text-gray-800 mt-2')
                     ui.label('Get personalized course recommendations.').classes('text-gray-500 text-sm mb-4')
                     ui.button('Find a Course', on_click=lambda: ui.notify('Finding a course...')).classes('w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 pointer-events-none')
-
                 with ui.card().classes('w-full p-6 rounded-xl shadow-md'):
                     ui.label('Upload Transcript').classes('text-xl font-bold text-gray-800 mb-4')
-                    _upload_btn = ui.upload(on_upload=handle_document_upload(field_name), auto_upload=True).props('flat bordered accept=image/*').classes('w-full')
+                    _upload_btn = ui.upload(on_upload=lambda e: handle_document_upload(field_name), auto_upload=True).props('flat bordered accept=image/*').classes('w-full')
                     ui.label('Please upload an image file (e.g., PNG, JPG).').classes('text-xs text-gray-500 mt-1 text-center w-full')
