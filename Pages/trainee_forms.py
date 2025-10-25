@@ -79,7 +79,7 @@ def show_trainee_forms():
                 on_upload=handle_document_upload(field_name),
                 auto_upload=True,
                 max_files=1,
-            ).props("flat bordered accept=image/*").classes("w-full")
+            ).props("flat bordered color=black accept=image/*").classes("w-full")
             ui.label("Please upload an image file (e.g., PNG, JPG).").classes("text-xs text-gray-500 -mt-1")
 
     # -------------------------------
@@ -93,7 +93,7 @@ def show_trainee_forms():
         with ui.stepper().props("vertical").classes("w-full") as stepper:
 
             # STEP 1: Trainee Information
-            with ui.step("Trainee Information"):
+            with ui.step("Trainee Information").props("dense flat").classes("text-black"):
                 ui.label("Please fill in your personal details.").classes("text-gray-600")
                 with ui.column().classes("w-full gap-1 mt-4"):
                     name = ui.input("Full Name").props("outlined dense").classes("w-full")
@@ -103,7 +103,7 @@ def show_trainee_forms():
                     gender = ui.select(["male", "female"], label="Select Gender").props("outlined dense").classes("w-full")
 
                 with ui.stepper_navigation():
-                    ui.button("Next", on_click=stepper.next).props("color=primary")
+                    ui.button("Next", on_click=stepper.next).props("color=black")
 
             # STEP 2: Document Uploads
             with ui.step("Document Uploads"):
@@ -114,8 +114,8 @@ def show_trainee_forms():
                     _create_upload("WASSCE Certificate", "trainee_wassce_cert")
 
                 with ui.stepper_navigation():
-                    ui.button("Next", on_click=stepper.next).props("color=primary")
-                    ui.button("Back", on_click=stepper.previous).props("flat color=primary")
+                    ui.button("Next", on_click=stepper.next).props("color=black")
+                    ui.button("Back", on_click=stepper.previous).props("flat color=black")
 
             # STEP 3: Parent/Guardian Information
             with ui.step("Parent/Guardian Information"):
@@ -142,5 +142,5 @@ def show_trainee_forms():
                             },
                             uploaded_files,
                         ),
-                    )
-                    ui.button("Back", on_click=stepper.previous).props("flat color=primary")
+                    ).props('color=black')
+                    ui.button("Back", on_click=stepper.previous).props("flat color=black")

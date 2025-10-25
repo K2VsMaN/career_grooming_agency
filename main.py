@@ -11,6 +11,7 @@ from pages.login import *
 from pages.agent_signup import *
 from pages.admin_signup import *
 from pages.resource import *
+from pages.upload_resource import *
 
 
 

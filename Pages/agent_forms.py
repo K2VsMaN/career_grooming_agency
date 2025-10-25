@@ -78,7 +78,7 @@ def show_agent_forms():
                 on_upload=handle_document_upload(field_name),
                 auto_upload=True,
                 max_files=1,
-            ).props("flat bordered accept=image/*").classes("w-full")
+            ).props("flat bordered color=black accept=image/*").classes("w-full")
             ui.label("Please upload an image file (e.g., PNG, JPG).").classes("text-xs text-gray-500 -mt-1")
 
     with ui.card().classes("w-full max-w-2xl mx-auto my-8 p-8 rounded-xl shadow-2xl"):
@@ -123,7 +123,7 @@ def show_agent_forms():
                         .classes("w-full")
                     )
                 with ui.stepper_navigation():
-                    ui.button("Next", on_click=stepper.next).props("color=primary")
+                    ui.button("Next", on_click=stepper.next).props("color=black")
 
             with ui.step("Document Uploads"):
                 ui.label(
@@ -146,9 +146,9 @@ def show_agent_forms():
                                 },
                                 uploaded_files,
                             ),
-                        )
+                        ).props('color=black')
                     
 
                     ui.button("Back", on_click=stepper.previous).props(
-                        "flat color=primary"
+                        "flat color=black"
                     )

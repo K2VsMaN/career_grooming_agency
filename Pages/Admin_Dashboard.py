@@ -36,7 +36,7 @@ def _create_stat_cards(stats: List[Dict[str, str]]):
                     with ui.column().classes('gap-1'):
                         ui.label(s['title']).classes('text-sm text-gray-600')
                         ui.label(s['value']).classes('text-2xl font-bold text-slate-900')
-                    with ui.element('div').classes('w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center'):
+                    with ui.element('div').classes('w-10 h-10 rounded-full bg-blue-50 text-black flex items-center justify-center'):
                         ui.icon(s['icon']).classes('text-xl')
 
 def _create_application_management():
@@ -157,7 +157,7 @@ def _create_sponsors_panel(sponsors: List[Dict[str, str]]):
                             ui.label(s['meta']).classes('text-xs text-gray-500')
                     ui.icon('chevron_right').classes('text-gray-400')
 
-            ui.link('View All Sponsors', '#').classes('block text-blue-600 mt-4')
+            ui.link('View All Sponsors', '#').classes('block text-black mt-4')
 
 @ui.page("/pages/admin_dashboard")
 def show_admin_dashboard():
