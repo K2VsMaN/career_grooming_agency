@@ -77,12 +77,12 @@ def login_page():
                         {"email": email.value, "password": password.value}
                     ),
                 ).classes(
-                    "w-full bg-indigo-500 text-white font-bold py-3 rounded-lg hover:bg-indigo-600 transition-colors"
+                    "w-full bg-black text-white font-bold py-3 rounded-lg hover:bg-gray-800 transition-colors"
                 )
 
             # Footer Link
             with ui.row().classes("w-full justify-center mt-6"):
                 ui.label("Don't have an account?").classes("text-gray-600")
                 ui.link("Sign up", "/trainee/signup").classes(
-                    "ml-1 font-medium text-indigo-500 hover:underline"
+                    "ml-1 font-medium text-black hover:underline"
                 )

@@ -13,8 +13,8 @@ def show_home_page():
         with ui.dialog() as dialog, ui.card().classes('p-8 rounded-lg'):
             ui.label('How would you like to join us?').classes('text-2xl font-bold text-center w-full mb-6 text-gray-800')
             with ui.row().classes('w-full justify-center items-center gap-6'):
-                ui.button('As a Trainee', on_click=lambda: ui.navigate.to('/trainee/forms')).props('color=primary size=lg').classes('px-8 py-4')
-                ui.button('As an Agent', on_click=lambda: ui.navigate.to('/agent/forms')).props('color=secondary size=lg').classes('px-8 py-4')
+                ui.button('As a Trainee', on_click=lambda: ui.navigate.to('/trainee/forms')).props('color=black size=lg').classes('px-8 py-4')
+                ui.button('As an Agent', on_click=lambda: ui.navigate.to('/agent/forms')).props('color=black size=lg').classes('px-8 py-4')
         dialog.open()
     
     # Main content container
@@ -50,18 +50,18 @@ def show_home_page():
                 ui.button('Start Your Journey', on_click=show_role_selection_dialog).classes(
            'text-lg px-8 py-6 rounded-full border-2 border-white text-white '
            'transition-colors duration-200 ease-out '
-           'hover:bg-yellow-400 hover:border-yellow-400 hover:text-black '
-           'active:bg-yellow-400 active:border-yellow-400 active:text-black '
-           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 '
+           'hover:bg-black hover:border-black hover:text-white '
+           'active:bg-black active:border-black active:text-white '
+           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 '
            '-mt-[30px]' 
        ).props('flat dense no-caps push ripple')
 
                 ui.button('Learn More').classes(
            'text-lg px-8 py-6 rounded-full border-2 border-white text-white '
            'transition-colors duration-200 ease-out '
-           'hover:bg-yellow-400 hover:border-yellow-400 hover:text-black '
-           'active:bg-yellow-400 active:border-yellow-400 active:text-black '
-           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-300 '
+           'hover:bg-black hover:border-black hover:text-white '
+           'active:bg-black active:border-black active:text-white '
+           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 '
            '-mt-[30px]').props('flat dense no-caps push ripple')
     
     # Mission & Vision

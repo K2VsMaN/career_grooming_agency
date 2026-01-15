@@ -54,24 +54,22 @@ def show_admin_signup():
                 # Agent (inactive)
                 with ui.column().on(
                     "click", lambda: ui.navigate.to("/agent/signup")
-                ).classes(
-                    "group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
+                ).classes("group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-black text-gray-500 hover:text-gray-700 transition-all"
                 ):
-                    ui.icon("support_agent").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
+                    ui.icon("support_agent").classes("text-3xl mb-1 text-gray-400 group-hover:text-black")
                     ui.label("Agent").classes("text-sm font-medium")
 
                 # Trainee (inactive)
                 with ui.column().on(
                     "click", lambda: ui.navigate.to("/trainee/signup")
-                ).classes(
-                    "group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-indigo-500 text-gray-500 hover:text-gray-700 transition-all"
+                ).classes("group items-center justify-center p-3 border-2 rounded-lg cursor-pointer border-gray-300 hover:border-black text-gray-500 hover:text-gray-700 transition-all"
                 ):
-                    ui.icon("school").classes("text-3xl mb-1 text-gray-400 group-hover:text-indigo-500")
+                    ui.icon("school").classes("text-3xl mb-1 text-gray-400 group-hover:text-black")
                     ui.label("Trainee").classes("text-sm font-medium")
 
                 # Admin (active)
                 with ui.column().classes(
-                    "items-center justify-center p-3 border-2 rounded-lg cursor-pointer bg-indigo-500 text-white border-indigo-500 transition-all"
+                    "items-center justify-center p-3 border-2 rounded-lg cursor-pointer bg-black text-white border-black transition-all"
                 ):
                     ui.icon("admin_panel_settings").classes("text-3xl mb-1")
                     ui.label("Admin").classes("text-sm font-medium")
@@ -93,11 +91,11 @@ def show_admin_signup():
                     }
                 ),
             ).classes(
-                "w-full bg-indigo-500 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-600 transition-colors"
+                "w-full bg-black text-white font-bold py-3 px-4 rounded-lg hover:bg-gray-800 transition-colors"
             )
 
             with ui.row().classes("w-full justify-center mt-4"):
                 ui.label("Already have an account?").classes("text-sm text-gray-600")
                 ui.link("Login", "/login").classes(
-                    "text-sm font-medium text-indigo-500 hover:underline ml-1"
+                    "text-sm font-medium text-black hover:underline ml-1"
                 )

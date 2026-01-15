@@ -78,7 +78,7 @@ def dashboard_layout(field_name: str = "transcript"):
             ui.label('Trainee Dashboard').classes('text-4xl font-bold text-gray-800')
         
         # Welcome Banner
-        with ui.card().classes('w-full p-6 rounded-xl bg-indigo-500 text-white flex items-center justify-between shadow-lg cursor-pointer hover:shadow-xl transition-shadow'):
+        with ui.card().classes('w-full p-6 rounded-xl bg-black text-white flex items-center justify-between shadow-lg cursor-pointer hover:shadow-xl transition-shadow'):
             with ui.column():
                 ui.label(f'Welcome back, {username}!').classes('text-2xl font-bold')
                 ui.label("Let's continue your learning journey.").classes('mt-1 opacity-90')
@@ -92,8 +92,8 @@ def dashboard_layout(field_name: str = "transcript"):
                     progress = ui.label('Overall Progress').classes('text-xl font-bold text-gray-800 mb-4')
                     with ui.row().classes('w-full items-center justify-between mb-1'):
                         ui.label('Tasks Completed').classes('text-gray-500')
-                        ui.label('60%').classes('font-semibold text-indigo-600')
-                    ui.linear_progress(0.6, show_value=False).props('color=indigo rounded')
+                        ui.label('60%').classes('font-semibold text-black')
+                    ui.linear_progress(0.6, show_value=False).props('color=black rounded')
 
                 with ui.card().on('click', lambda: ui.notify('Contacting agent...')).classes('w-full p-6 rounded-xl shadow-md cursor-pointer hover:shadow-xl transition-shadow'):
                     ui.label('Your Agent').classes('text-xl font-bold text-gray-800 mb-4')
@@ -103,22 +103,22 @@ def dashboard_layout(field_name: str = "transcript"):
                             ui.label('Sarah Johnson').classes('font-bold text-lg text-gray-800')
                             ui.label('Senior IT Advisor').classes('text-gray-500')
                         ui.button('Contact', icon='mail_outline', on_click=lambda: ui.notify('Contacting agent...')) \
-                            .props('flat round color=primary').classes('ml-auto pointer-events-none') # Make button non-interactive as card is clickable
-                with ui.card().on('click', lambda: ui.notify('Navigating to resources...')).classes('w-full p-6 rounded-xl shadow-md items-center text-center cursor-pointer hover:shadow-xl transition-shadow'):
-                    ui.icon('source', size='2.5rem').classes('text-indigo-500')
+                            .props('flat round color=black').classes('ml-auto pointer-events-none') # Make button non-interactive as card is clickable
+                with ui.card().classes('w-full p-6 rounded-xl shadow-md items-center text-center cursor-pointer hover:shadow-xl transition-shadow'):
+                    ui.icon('source', size='2.5rem').classes('text-black')
                     ui.label('Learning Resources').classes('text-xl font-bold text-gray-800 mt-2')
                     ui.label('Access articles, videos, and tutorials.').classes('text-gray-500 text-sm mb-4')
-                    ui.button('Browse Resources', on_click=lambda: ui.navigate.to('/resources')).classes('w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 pointer-events-none')
+                    ui.button('Browse Resources', on_click=lambda: ui.navigate.to('/resources')).classes('w-full bg-black text-white font-semibold py-2 rounded-lg hover:bg-gray-800')
 
 
             # Right Column (AI Assistant and Upload)
             with ui.column().classes('lg:col-span-1 gap-8'):
                 with ui.card().on('click', lambda: ui.notify('Finding a course...')).classes('w-full p-6 rounded-xl shadow-md items-center text-center cursor-pointer hover:shadow-xl transition-shadow'):
-                    ui.icon('auto_awesome', size='2.5rem').classes('text-indigo-500 animate-pulse')
+                    ui.icon('auto_awesome', size='2.5rem').classes('text-black animate-pulse')
                     ui.label('AI Course Assistant').classes('text-xl font-bold text-gray-800 mt-2')
                     ui.label('Get personalized course recommendations.').classes('text-gray-500 text-sm mb-4')
-                    ui.button('Find a Course', on_click=lambda: ui.notify('Finding a course...')).classes('w-full bg-indigo-500 text-white font-semibold py-2 rounded-lg hover:bg-indigo-600 pointer-events-none')
+                    ui.button('Find a Course', on_click=lambda: ui.notify('Finding a course...')).classes('w-full bg-black text-white font-semibold py-2 rounded-lg hover:bg-gray-800 pointer-events-none')
                 with ui.card().classes('w-full p-6 rounded-xl shadow-md'):
                     ui.label('Upload Transcript').classes('text-xl font-bold text-gray-800 mb-4')
-                    _upload_btn = ui.upload(on_upload=lambda e: handle_document_upload(field_name), auto_upload=True).props('flat bordered accept=image/*').classes('w-full')
+                    _upload_btn = ui.upload(on_upload=lambda e: handle_document_upload(field_name), auto_upload=True).props('flat bordered color=black accept=image/*').classes('w-full')
                     ui.label('Please upload an image file (e.g., PNG, JPG).').classes('text-xs text-gray-500 mt-1 text-center w-full')
