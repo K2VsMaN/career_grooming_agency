@@ -1,6 +1,6 @@
 from nicegui import ui, app
 from Components.Header import *
-from Components.footer import *
+from Components.Footer import *
 from Pages.home_page import *
 from Pages.Admin_Dashboard import *
 from Pages.trainee_dashboard import *
