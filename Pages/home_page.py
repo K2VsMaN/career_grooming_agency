@@ -1,5 +1,5 @@
 from nicegui import ui
-from components.header import show_header
+from components.Header import show_header
 from components.footer import show_footer
 
 
