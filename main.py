@@ -1,8 +1,8 @@
 from nicegui import ui, app
-from components.header import *
+from components.Header import *
 from components.footer import *
 from pages.home_page import *
-from pages.admin_dashboard import *
+from pages.Admin_Dashboard import *
 from pages.trainee_dashboard import *
 from pages.agent_forms import *
 from pages.trainee_forms import *
