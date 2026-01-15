@@ -1,6 +1,6 @@
 from nicegui import ui, run, events, app
 import io
-from components.sidebar import show_sidebar
+from Components.sidebar import show_sidebar
 import requests
 from utils.api import base_url
 

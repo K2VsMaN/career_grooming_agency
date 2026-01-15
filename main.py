@@ -1,21 +1,21 @@
 from nicegui import ui, app
-from components.Header import *
-from components.footer import *
-from pages.home_page import *
-from pages.Admin_Dashboard import *
-from pages.trainee_dashboard import *
-from pages.agent_forms import *
-from pages.trainee_forms import *
-from pages.trainee_signup import *
-from pages.login import *
-from pages.agent_signup import *
-from pages.admin_signup import *
-from pages.resource import *
-from pages.upload_resource import *
+from Components.Header import *
+from Components.footer import *
+from Pages.home_page import *
+from Pages.Admin_Dashboard import *
+from Pages.trainee_dashboard import *
+from Pages.agent_forms import *
+from Pages.trainee_forms import *
+from Pages.trainee_signup import *
+from Pages.login import *
+from Pages.agent_signup import *
+from Pages.admin_signup import *
+from Pages.resource import *
+from Pages.upload_resource import *
 
 
 
-from pages.agent_dashboard import *
+from Pages.agent_dashboard import *
 
 
 

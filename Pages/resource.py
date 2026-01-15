@@ -1,5 +1,5 @@
 from nicegui import ui
-from components.sidebar import show_sidebar
+from Components.sidebar import show_sidebar
 
 
 @ui.page("/resources")
